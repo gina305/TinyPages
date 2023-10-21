@@ -1,51 +1,31 @@
-// Include required libraries
-const express = require('express');
-const fileUpload = require('express-fileupload');
-const JSFtp = require('jsftp');
-const fs = require('fs');
+// Load environment variables from .env file
+require("dotenv").config();
 
+const express = require("express");
 const app = express();
+const ejs = require("ejs");
 
-// Enable file upload middleware
-app.use(fileUpload());
+// Serve static HTML files
+app.use(express.static("public"));
 
-app.post('/upload', (req, res) => {
-  if (!req.files || Object.keys(req.files).length === 0) {
-    return res.status(400).send('No files were uploaded.');
-  }
+// Set the view engine to EJS
+app.set("view engine", "ejs");
+app.set("views", __dirname + "/views"); // Specify the directory for views
 
-  // The name of the input field (i.e. "file") is used to retrieve the uploaded file
-  let ftpFile = req.files.file;
-  let path = `./${ftpFile.name}`;
-
-  // Use the mv() method to place the file somewhere on your server
-  ftpFile.mv(path, (err) => {
-    if (err) return res.status(500).send(err);
-
-    // FTP Server details
-    let Ftp = new JSFtp({
-      host: 'ftp.yourdomain.com',
-      port: 21, // defaults to 21
-      user: 'username', // defaults to 'anonymous'
-      pass: 'password' // defaults to '@anonymous'
-    });
-
-    Ftp.put(path, `/remote/path/${ftpFile.name}`, (hadErr) => {
-      if (!hadErr) {
-        console.log('File transferred successfully!');
-      }
-
-      // Delete file after transferring
-      fs.unlink(path, (delErr) => {
-        if (delErr) console.error(delErr);
-        console.log('Local file deleted');
-      });
-
-      res.send('File uploaded!');
-    });
-  });
+// Route for the main page
+app.get("/", (req, res) => {
+  const tinyKey = process.env.TINY_KEY;
+  res.render("index", { tinyKey });
 });
 
-app.listen(8000, () => {
-  console.log('Server started on http://localhost:8000');
+// Route for the test page
+app.get("/test", (req, res) => {
+  const tinyKey = process.env.TINY_KEY;
+  res.render("test", { tinyKey });
+});
+
+// Start the server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
 });

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.tiny.cloud/1/q2aalnqpy4v5jhj6ld9m7zc2bninkerr8hms02u7s3a4awgr/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+</head>
+<body>
+  <textarea id="custom-toolbar-button" rec4gKOoMzvBLk3Ul="p-i-d">
+    <h2>How to Find Siteground FTP Credentials</h2>
+
+<p>defsult</p>
+
+  </textarea>
+  <script>
+var textareaId;
+var content;
+    
+tinymce.init({
+  selector: 'textarea#custom-toolbar-button',
+  min_height: 720,
+  plugins: 'ai mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+  toolbar: 'customInsertButton customDateButton undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+  setup: (editor) => {
+
+    const toTimeHtml = (date) => `<time datetime="${date.toString()}">${date.toDateString()}</time>`;
+
+    editor.ui.registry.addButton('customDateButton', {
+  text: 'Update',
+    icon: 'Upload',
+  tooltip: 'Click to update your Pub',
+  enabled: false,
+
+  
+  onAction: (_) => {
+    // editor.insertContent(toTimeHtml(new Date()));
+    textareaId = editor.getParam('rec4gKOoMzvBLk3Ul');
+    content = editor.getContent();
+    console.log(content);
+  fetch('https://hook.us1.make.com/xgxtp191f6h9fs4x71oyrx4mkt04dyip', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        content: content,
+        powerpub_id: 'rec4gKOoMzvBLk3Ul'
+      })
+    }).then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+    }).catch(error => {
+      console.error('There was a problem:', error);
+    });
+  },
+      
+});
+  },
+  content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+});
+    
+
+  </script>
+</body>
+</html>

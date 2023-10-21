@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.tiny.cloud/1/q2aalnqpy4v5jhj6ld9m7zc2bninkerr8hms02u7s3a4awgr/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+</head>
+<body>
+  <textarea id="custom-toolbar-button" rec4gKOoMzvBLk3Ul="p-i-d">
+    <h2>How to Find Siteground FTP Credentials</h2>
+
+<h3>1. Situation</h3>
+
+<p>As a website owner, you may need to access your website files using File Transfer Protocol (FTP) for various reasons such as uploading files, making changes to your website, or troubleshooting issues. In order to use FTP, you will need to have the FTP credentials for your hosting provider. This guide will walk you through finding your Siteground FTP credentials.</p>
+
+<h4>1.1. Complication</h4>
+
+<p>Siteground provides its users with a user-friendly interface, but finding the FTP credentials can be a bit confusing for some users, especially if they are new to web hosting.</p>
+
+<h4>1.2. Question</h4>
+
+<p>How can I locate my Siteground FTP credentials?</p>
+
+<h3>2. Answer</h3>
+
+<p>To find your Siteground FTP credentials, follow these steps:</p>
+
+<h4>2.1. Step 1: Log in to your Siteground Account</h4>
+
+<p>Go to the Siteground website and log in to your account using your username and password.</p>
+
+<h4>2.2. Step 2: Access the cPanel</h4>
+
+<p>Once logged in, navigate to the "My Accounts" tab and click on the "Go to cPanel" button next to your hosting account.</p>
+
+<h4>2.3. Step 3: Find FTP Accounts</h4>
+
+<p>In the cPanel dashboard, scroll down and look for the "Files" section. Click on "FTP Accounts".</p>
+
+<h4>2.4. Step 4: View FTP Account Details</h4>
+
+<p>In the FTP Accounts section, you will see a list of existing FTP accounts. Find the account you want to access and click on the "Configure FTP Client" link.</p>
+
+<h4>2.5. Step 5: Retrieve FTP Credentials</h4>
+
+<p>In the FTP Client Configuration section, you will find all the necessary FTP credentials, including the hostname, username, and password. You can either note down these credentials or use the "Copy to Clipboard" option for convenience.</p>
+
+<p>Keep in mind that the FTP password may be different from your Siteground account password, so ensure that you are using the correct credentials while logging in through FTP.</p>
+
+<h4>2.6. Step 6: Connect to FTP Server</h4>
+
+<p>Using an FTP client software such as FileZilla or Cyberduck, enter the FTP credentials (host, username, and password) to connect to the Siteground FTP server. Once connected, you can access and manage your website files.</p>
+
+<p>By following these steps, you should be able to locate and use your Siteground FTP credentials effectively.</p>
+
+  </textarea>
+  <script>
+var textareaId;
+var content;
+    
+tinymce.init({
+  selector: 'textarea#custom-toolbar-button',
+  min_height: 720,
+  plugins: 'ai mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+  toolbar: 'customInsertButton customDateButton undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+  setup: (editor) => {
+
+    const toTimeHtml = (date) => `<time datetime="${date.toString()}">${date.toDateString()}</time>`;
+
+    editor.ui.registry.addButton('customDateButton', {
+  text: 'Update',
+    icon: 'Upload',
+  tooltip: 'Click to update your Pub',
+  enabled: false,
+
+  
+  onAction: (_) => {
+    // editor.insertContent(toTimeHtml(new Date()));
+    textareaId = editor.getParam('rec4gKOoMzvBLk3Ul');
+    content = editor.getContent();
+    console.log(content);
+  fetch('https://hook.us1.make.com/xgxtp191f6h9fs4x71oyrx4mkt04dyip', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        content: content,
+        powerpub_id: 'rec4gKOoMzvBLk3Ul'
+      })
+    }).then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+    }).catch(error => {
+      console.error('There was a problem:', error);
+    });
+  },
+      
+});
+  },
+  content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+});
+    
+
+  </script>
+</body>
+</html>
