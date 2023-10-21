@@ -33,4 +33,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           TINY_KEY: ${{ secrets.TINY_KEY }}
-          publish_dir: ./build  # the folder where your site is built
+          publish_dir: ./  # the folder where your site is built
