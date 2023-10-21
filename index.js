@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
 app.get("/test", (req, res) => {
   const tinyKey = process.env.TINY_KEY;
   res.render("test", { tinyKey });
-});
+;
 
 // Start the server
 const port = process.env.PORT || 3000;
